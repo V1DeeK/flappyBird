@@ -1,0 +1,56 @@
+[
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\main.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\main.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\main.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\main.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\game.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\game.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\game.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\game.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\entities\\bird.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\entities\\bird.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\entities\\bird.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\entities\\bird.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\entities\\column.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\entities\\column.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\entities\\column.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\entities\\column.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\states\\GameState.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\GameState.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\GameState.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\states\\GameState.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\states\\MainMenuState.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\MainMenuState.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\MainMenuState.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\states\\MainMenuState.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\states\\GameOverState.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\GameOverState.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\states\\GameOverState.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\states\\GameOverState.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\ui\\Button.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\ui\\Button.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\ui\\Button.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\ui\\Button.cpp.obj"
+},
+{
+  "directory": "C:/Users/VadimDenisovich/Desktop/Flappy/build",
+  "command": "C:\\mingw64\\bin\\c++.exe -IC:/Users/VadimDenisovich/Desktop/Flappy/src -isystem C:/SFML302/include -std=gnu++17 -o CMakeFiles\\Flappy.dir\\src\\ui\\ModalDialog.cpp.obj -c C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\ui\\ModalDialog.cpp",
+  "file": "C:\\Users\\VadimDenisovich\\Desktop\\Flappy\\src\\ui\\ModalDialog.cpp",
+  "output": "CMakeFiles\\Flappy.dir\\src\\ui\\ModalDialog.cpp.obj"
+}
+]
