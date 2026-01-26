@@ -2,7 +2,6 @@
 
 #include "../State.hpp"
 #include "../ui/Button.hpp"
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <memory>
 
@@ -24,7 +23,6 @@ private:
     // UI элементы
     Button restartButton;
     Button exitButton;
-    sf::Font font;
     std::unique_ptr<sf::Text> scoreText;
     std::unique_ptr<sf::Text> highScoreText;
     std::unique_ptr<sf::Text> gameOverText;

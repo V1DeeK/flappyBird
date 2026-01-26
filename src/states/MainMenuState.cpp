@@ -4,7 +4,6 @@
 #include "../Constants.hpp"
 #include "../ResourceManager.hpp"
 #include <vector>
-#include <iostream>
 
 MainMenuState::MainMenuState(Game& game)
     : game(game)
@@ -19,7 +18,6 @@ MainMenuState::MainMenuState(Game& game)
         "Exit"
       )
 {
-    // Load background using ResourceManager
     auto& rm = ResourceManager::getInstance();
     std::vector<std::string> bgPaths = {
         "../assets/textures/SkySunGame.png",
@@ -35,7 +33,6 @@ MainMenuState::MainMenuState(Game& game)
 }
 
 void MainMenuState::handleEvents(const sf::Event& event) {
-    // Обрабатываем события кнопок главного меню
     playButton.handleEvent(event, game.window);
     exitButton.handleEvent(event, game.window);
 
@@ -49,11 +46,9 @@ void MainMenuState::handleEvents(const sf::Event& event) {
 }
 
 void MainMenuState::update(float deltaTime) {
-    // Ничего не обновляется в меню
 }
 
 void MainMenuState::render(sf::RenderWindow& window) {
-    // Рисуем фон
     if (backgroundSprite) {
         window.draw(*backgroundSprite);
     } else {

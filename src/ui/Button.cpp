@@ -1,18 +1,15 @@
 #include "Button.hpp"
 #include "../Constants.hpp"
-#include <iostream>
 #include <vector>
 
 Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std::string& textStr)
     : rect(size)
 {
     rect.setPosition(position);
-    // Делаем фон кнопки полупрозрачным для лучшей видимости текста
-    rect.setFillColor(sf::Color(50, 50, 50, 200));  // Темно-серый с прозрачностью
+    rect.setFillColor(sf::Color(50, 50, 50, 200));
     rect.setOutlineColor(sf::Color::White);
     rect.setOutlineThickness(2.0f);
 
-    // Загружаем шрифт
     bool fontLoaded = false;
     
     if (font.openFromFile("../assets/fonts/ScoreFont.ttf")) {
@@ -23,24 +20,19 @@ Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std
         return;
     }
 
-    // Создаем текст с загруженным шрифтом
     text = std::make_unique<sf::Text>(font);
     text->setString(textStr);
     text->setCharacterSize(Constants::FONT_SIZE_DEFAULT);
     text->setFillColor(sf::Color::White);
 
-    // Центрирование текста
-    // В SFML 3.0 FloatRect имеет поля position и size
     sf::FloatRect textBounds = text->getLocalBounds();
     
-    // Правильное центрирование с учетом position (может быть отрицательным из-за глифов)
     sf::Vector2f origin(
         textBounds.size.x / 2.0f + textBounds.position.x, 
         textBounds.size.y / 2.0f + textBounds.position.y
     );
     text->setOrigin(origin);
     
-    // Позиционируем текст в центре кнопки
     text->setPosition(sf::Vector2f(position.x + size.x / 2.0f, position.y + size.y / 2.0f));
 }
 

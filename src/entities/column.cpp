@@ -1,13 +1,11 @@
 #include "column.hpp"
 #include "../Constants.hpp"
 #include "../ResourceManager.hpp"
-#include <iostream>
 #include <vector>
 
 Column::Column(float x, float gapY)
     : gapY(gapY)
 {
-    // Load pipe textures using ResourceManager
     auto& rm = ResourceManager::getInstance();
     
     static bool texturesLoaded = false;
@@ -26,12 +24,8 @@ Column::Column(float x, float gapY)
     float gapHeight = Constants::COLUMN_GAP;
     float pipeWidth = Constants::PIPE_WIDTH;
     
-    // Верхняя труба (PipeDown)
-    // gapY - это центр дыры между трубами
-    // Верхняя труба идет от верха экрана (Y=0) до начала дыры
-    float gapTop = gapY - gapHeight / 2.0f; // Верх дыры
-    float topHeight = gapTop; // Высота верхней трубы = расстояние от верха до верха дыры
-    // Limit minimum height of top pipe
+    float gapTop = gapY - gapHeight / 2.0f;
+    float topHeight = gapTop;
     if (topHeight < Constants::MIN_PIPE_HEIGHT) {
         topHeight = Constants::MIN_PIPE_HEIGHT;
         gapTop = Constants::MIN_PIPE_HEIGHT;
@@ -45,10 +39,8 @@ Column::Column(float x, float gapY)
         topPipe.setFillColor(sf::Color::Green);
     }
     
-    // Bottom pipe (PipeUp)
     float bottomY = gapY + gapHeight / 2.0f;
     float bottomHeight = Constants::WINDOW_HEIGHT - bottomY;
-    // Limit minimum height of bottom pipe
     if (bottomHeight < Constants::MIN_PIPE_HEIGHT) {
         bottomHeight = Constants::MIN_PIPE_HEIGHT;
         bottomY = Constants::WINDOW_HEIGHT - Constants::MIN_PIPE_HEIGHT;

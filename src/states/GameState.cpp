@@ -6,7 +6,6 @@
 #include "../ResourceManager.hpp"
 #include "../Collisions.hpp"
 #include "GameOverState.hpp"
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Audio.hpp>
 #include <memory>
@@ -24,17 +23,14 @@ GameState::GameState(Game& game)
 {
     auto& rm = ResourceManager::getInstance();
     
-    // Create default bird
     bird = std::make_unique<Bird>();
     
-    // Load font using ResourceManager
     std::vector<std::string> fontPaths = {
         "../assets/fonts/ScoreFont.ttf",
         "assets/fonts/ScoreFont.ttf"
     };
     rm.loadFontFromPaths("score_font", fontPaths);
     
-    // Load sky texture using ResourceManager
     std::vector<std::string> skyPaths = {
         "../assets/textures/SkyFonGame.png",
         "assets/textures/SkyFonGame.png"
@@ -47,7 +43,6 @@ GameState::GameState(Game& game)
         skySprite->setScale(sf::Vector2f(scaleX, scaleY));
     }
     
-    // Load land texture using ResourceManager
     std::vector<std::string> landPaths = {
         "../assets/textures/LandGame.png",
         "assets/textures/LandGame.png"
@@ -64,7 +59,6 @@ GameState::GameState(Game& game)
         landSprite2->setPosition(sf::Vector2f(static_cast<float>(landTexture.getSize().x), landY));
     }
     
-    // Load sounds using ResourceManager
     std::vector<std::string> wingPaths = {
         "../assets/sounds/Wing.wav",
         "assets/sounds/Wing.wav"
@@ -87,15 +81,14 @@ void GameState::handleEvents(const sf::Event& event) {
 
     if (const auto* keyEvent = event.getIf<sf::Event::KeyPressed>()) {
         if (keyEvent->code == sf::Keyboard::Key::Escape) {
-            game.popState(); // вернуться в меню
+            game.popState();
         }
         if (keyEvent->code == sf::Keyboard::Key::Space) {
             if (!gameStarted) {
                 gameStarted = true;
-                spawnClock.restart(); // Перезапускаем таймер спавна при старте игры
+                spawnClock.restart();
             }
             bird->jump();
-            // Воспроизводим звук крыла
             if (wingSound) wingSound->play();
         }
     }
@@ -103,50 +96,41 @@ void GameState::handleEvents(const sf::Event& event) {
 
 void GameState::update(float dt) {
     if (gameStarted) {
-        // Обновляем прокрутку земли
         float landSpeed = Constants::COLUMN_SPEED;
         landOffset -= landSpeed * dt;
         
-        // Получаем ширину текстуры земли
         float landWidth = static_cast<float>(landTexture.getSize().x);
         
-        // Если первый спрайт ушел за экран, перемещаем его вправо
         if (landOffset <= -landWidth) {
             landOffset += landWidth;
         }
         
-            // Обновляем позиции спрайтов земли
-            if (landSprite1 && landSprite2) {
-                float landHeight = static_cast<float>(landTexture.getSize().y);
-                float landY = Constants::WINDOW_HEIGHT - landHeight;
-                
-                landSprite1->setPosition(sf::Vector2f(landOffset, landY));
-                landSprite2->setPosition(sf::Vector2f(landOffset + landWidth, landY));
-            }
+        if (landSprite1 && landSprite2) {
+            float landHeight = static_cast<float>(landTexture.getSize().y);
+            float landY = Constants::WINDOW_HEIGHT - landHeight;
+            
+            landSprite1->setPosition(sf::Vector2f(landOffset, landY));
+            landSprite2->setPosition(sf::Vector2f(landOffset + landWidth, landY));
+        }
         
         bird->update(dt);
 
-        // Спавн труб
-        // Спавним первую трубу сразу при старте, затем каждые COLUMN_SPAWN_INTERVAL секунд
         if (columns.empty() || spawnClock.getElapsedTime().asSeconds() >= Constants::COLUMN_SPAWN_INTERVAL) {
             float gapY = gapYDist(rng);
             columns.emplace_back(Constants::WINDOW_WIDTH, gapY);
             spawnClock.restart();
         }
 
-        // Обновление труб
         for (auto& column : columns) {
             column.update(dt);
         }
 
-        // Remove columns off screen
         columns.erase(
             std::remove_if(columns.begin(), columns.end(),
                 [](const Column& c) { return c.getX() + Constants::PIPE_WIDTH < 0; }),
             columns.end()
         );
 
-        // Check if bird passed columns (for scoring)
         for (auto& column : columns) {
             if (Collisions::checkBirdPassedColumn(*bird, column)) {
                 column.markPassed();
@@ -154,7 +138,6 @@ void GameState::update(float dt) {
             }
         }
 
-        // Check collisions with pipes
         if (Collisions::checkBirdPipeCollision(*bird, columns)) {
             if (!hitSoundPlayed) {
                 if (hitSound) hitSound->play();
@@ -164,7 +147,6 @@ void GameState::update(float dt) {
             return;
         }
 
-        // Check collisions with boundaries (top/bottom)
         if (Collisions::checkBirdBoundaryCollision(*bird)) {
             if (!hitSoundPlayed) {
                 if (hitSound) hitSound->play();
@@ -177,23 +159,17 @@ void GameState::update(float dt) {
 }
 
 void GameState::render(sf::RenderWindow& window) {
-    // Порядок отрисовки слоёв (от дальнего к ближнему):
-    // 1. Фон неба (самый дальний слой)
     if (skySprite) window.draw(*skySprite);
     
-    // 2. Земля (на фоне неба)
     if (landSprite1) window.draw(*landSprite1);
     if (landSprite2) window.draw(*landSprite2);
     
-    // 3. Трубы (на земле)
     for (const auto& column : columns) {
         column.draw(window);
     }
     
-    // 4. Птица (поверх всего)
     bird->draw(window);
 
-    // Score
     auto& rm = ResourceManager::getInstance();
     if (rm.hasFont("score_font")) {
         sf::Text scoreText(rm.getFont("score_font"));
