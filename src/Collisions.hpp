@@ -20,3 +20,4 @@ namespace Collisions {
     bool checkBirdPassedColumn(const Bird& bird, const Column& column);
 }
 
+
