@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-class Game; // forward declaration
+class Game;
 
 class MainMenuState : public State {
 public:
@@ -19,8 +19,7 @@ private:
     Game& game;
     Button playButton;
     Button exitButton;
-    
-    // Фон
+
     sf::Texture backgroundTexture;
     std::unique_ptr<sf::Sprite> backgroundSprite;
 };
