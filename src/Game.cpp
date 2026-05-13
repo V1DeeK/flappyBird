@@ -1,6 +1,6 @@
 #include "Game.hpp"
 #include "Constants.hpp"
-#include "states/MainMenuState.hpp" // ← подключаем здесь, в .cpp!
+#include "states/MainMenuState.hpp"
 #include <optional>
 
 Game::Game()
@@ -8,8 +8,6 @@ Game::Game()
              Constants::WINDOW_TITLE)
 {
     window.setFramerateLimit(60);
-
-    // Запускаем главное меню при старте
     pushState(std::make_unique<MainMenuState>(*this));
 }
 
