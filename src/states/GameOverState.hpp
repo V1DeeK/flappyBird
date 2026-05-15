@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <memory>
 
-class Game;
+class Game; // forward declaration
 
 class GameOverState : public State {
 public:
@@ -20,7 +20,8 @@ private:
     Game& game;
     int score;
     int highScore;
-
+    
+    // UI элементы
     Button restartButton;
     Button exitButton;
     sf::Font font;
@@ -28,7 +29,9 @@ private:
     std::unique_ptr<sf::Text> highScoreText;
     std::unique_ptr<sf::Text> gameOverText;
     bool fontLoaded = false;
-
+    
+    // Фон
     sf::Texture backgroundTexture;
     std::unique_ptr<sf::Sprite> backgroundSprite;
 };
+

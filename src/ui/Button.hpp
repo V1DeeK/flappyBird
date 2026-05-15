@@ -15,6 +15,6 @@ public:
 private:
     sf::RectangleShape rect;
     sf::Font font;
-    std::unique_ptr<sf::Text> text;
+    std::unique_ptr<sf::Text> text;  // Используем указатель, так как Text требует Font при создании
     bool pressed = false;
 };

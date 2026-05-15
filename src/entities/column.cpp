@@ -6,17 +6,17 @@
 Column::Column(float x, float gapY)
     : gapY(gapY)
 {
-
+    // Загружаем текстуры труб
     static sf::Texture pipeDownTexture;
     static sf::Texture pipeUpTexture;
     static bool texturesLoaded = false;
-
+    
     if (!texturesLoaded) {
         std::vector<std::string> pathsDown = {"../assets/textures/PipeDown.png", "assets/textures/PipeDown.png"};
         std::vector<std::string> pathsUp = {"../assets/textures/PipeUp.png", "assets/textures/PipeUp.png"};
-
+        
         bool loadedDown = false, loadedUp = false;
-
+        
         for (const auto& path : pathsDown) {
             if (pipeDownTexture.loadFromFile(path)) {
                 loadedDown = true;
@@ -29,22 +29,25 @@ Column::Column(float x, float gapY)
                 break;
             }
         }
-
+        
         if (loadedDown && loadedUp) {
             texturesLoaded = true;
         }
     }
-
+    
     float gapHeight = Constants::COLUMN_GAP;
     float pipeWidth = 80.0f;
-
-    float gapTop = gapY - gapHeight / 2.0f;
-    float topHeight = gapTop;
-
+    
+    // Верхняя труба (PipeDown)
+    // gapY - это центр дыры между трубами
+    // Верхняя труба идет от верха экрана (Y=0) до начала дыры
+    float gapTop = gapY - gapHeight / 2.0f; // Верх дыры
+    float topHeight = gapTop; // Высота верхней трубы = расстояние от верха до верха дыры
+    // Ограничиваем минимальную высоту верхней трубы (чтобы не было слишком маленьких дыр)
     if (topHeight < 100.0f) {
         topHeight = 100.0f;
         gapTop = 100.0f;
-
+        // Пересчитываем gapY, чтобы дыра была правильного размера
         gapY = gapTop + gapHeight / 2.0f;
     }
     topPipe.setSize(sf::Vector2f(pipeWidth, topHeight));
@@ -54,14 +57,15 @@ Column::Column(float x, float gapY)
     } else {
         topPipe.setFillColor(sf::Color::Green);
     }
-
+    
+    // Нижняя труба (PipeUp)
     float bottomY = gapY + gapHeight / 2.0f;
     float bottomHeight = Constants::WINDOW_HEIGHT - bottomY;
-
+    // Ограничиваем минимальную высоту нижней трубы
     if (bottomHeight < 100.0f) {
         bottomHeight = 100.0f;
         bottomY = Constants::WINDOW_HEIGHT - 100.0f;
-
+        // Пересчитываем gapY, чтобы дыра была правильного размера
         gapY = bottomY - gapHeight / 2.0f;
     }
     bottomPipe.setSize(sf::Vector2f(pipeWidth, bottomHeight));

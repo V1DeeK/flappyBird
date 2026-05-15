@@ -18,20 +18,23 @@ public:
 
     bool isYesPressed() const;
     bool isNoPressed() const;
-    void reset();
+    void reset(); // Сброс состояния кнопок
 
     void setMessage(const std::string& message);
 
 private:
     bool visible = false;
-
+    
+    // Фон модального окна
     sf::RectangleShape background;
     sf::RectangleShape dialogBox;
-
+    
+    // Текст вопроса
     sf::Font font;
     std::unique_ptr<sf::Text> messageText;
     bool fontLoaded = false;
-
+    
+    // Кнопки
     Button yesButton;
     Button noButton;
 };

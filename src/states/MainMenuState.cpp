@@ -18,7 +18,7 @@ MainMenuState::MainMenuState(Game& game)
         "Exit"
       )
 {
-
+    // Загружаем фон
     std::vector<std::string> bgPaths = {
         "../assets/textures/SkySunGame.png",
         "assets/textures/SkySunGame.png"
@@ -26,7 +26,7 @@ MainMenuState::MainMenuState(Game& game)
     for (const auto& path : bgPaths) {
         if (backgroundTexture.loadFromFile(path)) {
             backgroundSprite = std::make_unique<sf::Sprite>(backgroundTexture);
-
+            // Растягиваем на весь экран
             float scaleX = static_cast<float>(Constants::WINDOW_WIDTH) / backgroundTexture.getSize().x;
             float scaleY = static_cast<float>(Constants::WINDOW_HEIGHT) / backgroundTexture.getSize().y;
             backgroundSprite->setScale(sf::Vector2f(scaleX, scaleY));
@@ -36,7 +36,7 @@ MainMenuState::MainMenuState(Game& game)
 }
 
 void MainMenuState::handleEvents(const sf::Event& event) {
-
+    // Обрабатываем события кнопок главного меню
     playButton.handleEvent(event, game.window);
     exitButton.handleEvent(event, game.window);
 
@@ -50,11 +50,11 @@ void MainMenuState::handleEvents(const sf::Event& event) {
 }
 
 void MainMenuState::update(float deltaTime) {
-
+    // Ничего не обновляется в меню
 }
 
 void MainMenuState::render(sf::RenderWindow& window) {
-
+    // Рисуем фон
     if (backgroundSprite) {
         window.draw(*backgroundSprite);
     } else {
