@@ -6,7 +6,6 @@
 Column::Column(float x, float gapY)
     : gapY(gapY)
 {
-    // Загружаем текстуры труб
     static sf::Texture pipeDownTexture;
     static sf::Texture pipeUpTexture;
     static bool texturesLoaded = false;
@@ -37,17 +36,12 @@ Column::Column(float x, float gapY)
     
     float gapHeight = Constants::COLUMN_GAP;
     float pipeWidth = 80.0f;
-    
-    // Верхняя труба (PipeDown)
-    // gapY - это центр дыры между трубами
-    // Верхняя труба идет от верха экрана (Y=0) до начала дыры
-    float gapTop = gapY - gapHeight / 2.0f; // Верх дыры
-    float topHeight = gapTop; // Высота верхней трубы = расстояние от верха до верха дыры
-    // Ограничиваем минимальную высоту верхней трубы (чтобы не было слишком маленьких дыр)
+
+    float gapTop = gapY - gapHeight / 2.0f;
+    float topHeight = gapTop;
     if (topHeight < 100.0f) {
         topHeight = 100.0f;
         gapTop = 100.0f;
-        // Пересчитываем gapY, чтобы дыра была правильного размера
         gapY = gapTop + gapHeight / 2.0f;
     }
     topPipe.setSize(sf::Vector2f(pipeWidth, topHeight));
@@ -58,14 +52,11 @@ Column::Column(float x, float gapY)
         topPipe.setFillColor(sf::Color::Green);
     }
     
-    // Нижняя труба (PipeUp)
     float bottomY = gapY + gapHeight / 2.0f;
     float bottomHeight = Constants::WINDOW_HEIGHT - bottomY;
-    // Ограничиваем минимальную высоту нижней трубы
     if (bottomHeight < 100.0f) {
         bottomHeight = 100.0f;
         bottomY = Constants::WINDOW_HEIGHT - 100.0f;
-        // Пересчитываем gapY, чтобы дыра была правильного размера
         gapY = bottomY - gapHeight / 2.0f;
     }
     bottomPipe.setSize(sf::Vector2f(pipeWidth, bottomHeight));
